@@ -3,7 +3,7 @@ Version:	60374
 Release:	2
 Summary:	hyperref aware footnote.sty
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/footnotehyper
+URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/footnotehyper
 License:	lppl1.3c
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/footnotehyper.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/footnotehyper.doc.r%{version}.tar.xz
