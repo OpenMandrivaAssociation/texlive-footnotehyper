@@ -1,40 +1,27 @@
-Name:		texlive-footnotehyper
-Version:	60374
-Release:	2
-Summary:	hyperref aware footnote.sty
+%global tl_name footnotehyper
+%global tl_revision 77682
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	1.1f
+Release:	%{tl_revision}.1
+Summary:	A hyperref aware footnote environment
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/footnotehyper
 License:	lppl1.3c
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/footnotehyper.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/footnotehyper.doc.r%{version}.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/footnotehyper.source.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/footnotehyper.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/footnotehyper.doc.r%{tl_revision}.tar.xz
+Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/footnotehyper.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-The footnote package by Mark Wooding dates back to 1997 and has
-not been made hyperref compatible. The aim of the present
-package is to do that.
+This package provides a footnote environment allowing verbatim material
+and a savenotes environment which captures footnotes across problematic
+environments. It is a successor to the footnote package by Mark Wooding
+which had various compatibility issues with modern packages (hyperref,
+color, xcolor, babel-french).
 
-%prep
-%setup -c -a1 -a2
-%autopatch -p1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%doc %{_texmfdistdir}/source/latex/footnotehyper
-%{_texmfdistdir}/tex/latex/footnotehyper
-%doc %{_texmfdistdir}/doc/latex/footnotehyper
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
